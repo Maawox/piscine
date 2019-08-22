@@ -1,0 +1,6 @@
+Credentials cache: API:C14B7F58-994E-4623-8448-984F0A7E19A7
+        Principal: mderoir@42.FR
+
+  Issued                Expires               Principal
+Jul 31 09:06:05 2019  Aug  7 09:06:05 2019  krbtgt/42.FR@42.FR
+Jul 31 09:16:45 2019  Aug  7 09:06:05 2019  host/vgs-fn1.42.fr@42.FR

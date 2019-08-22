@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mderoir <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 19:07:38 by mderoir           #+#    #+#             */
-/*   Updated: 2019/08/12 19:07:41 by mderoir          ###   ########.fr       */
+/*   Updated: 2019/08/21 15:45:24 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 
 int		ft_strlen(char *str)
 {
@@ -34,7 +32,7 @@ char	*ft_strscat(char *dest, char **src, char *sep, int size)
 
 	y = -1;
 	i = 0;
-	while (++y <= size)
+	while (++y < size)
 	{
 		x = 0;
 		while (src[y][x])
@@ -44,7 +42,7 @@ char	*ft_strscat(char *dest, char **src, char *sep, int size)
 			i++;
 		}
 		x = 0;
-		while (y < size && sep[x])
+		while (size != 1 && y < (size - 1) && sep[x])
 		{
 			dest[i] = sep[x];
 			x++;
@@ -68,8 +66,8 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 		len += ft_strlen(strs[j]);
 		j++;
 	}
-	len += size * ft_strlen(sep);
-	if (!(joined_str = (char*)malloc(sizeof(char) * len)) || size == 0)
+	len += (size - 1) * ft_strlen(sep) + 1;
+	if (!(joined_str = (char*)malloc(sizeof(char) * len)) || size < 1)
 	{
 		joined_str = NULL;
 		return (joined_str);

@@ -1,7 +1,4 @@
-#include "includes/ft.h"
-
-int main()
+int main ()
 {
-	ft_putstr("yo bruh!");
-	return (0);
+	ft_putchar('y');
 }

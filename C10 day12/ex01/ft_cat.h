@@ -11,5 +11,6 @@ void ft_putchar(char c);
 void ft_putstr(char *str);
 int ft_is_error(int fd);
 void ft_stdinput(void);
-void ft_display_file(int c, char **v, int i);
+void ft_display_file(int c, char *v);
+int		ft_strcmp(char *s1, char *s2);
 #endif

@@ -2,7 +2,7 @@
 
 	LIB = ft_cat.a
 
-	SRCS = ./main.c ./ft_display_file.c ./ft_putstr.c ./ft_putchar.c ./ft_is_error.c ./ft_stdinput.c
+	SRCS = ./main.c ./ft_display_file.c ./ft_putstr.c ./ft_putchar.c ./ft_is_error.c ./ft_stdinput.c ./ft_strcmp.c
 
 	OBJ = ${SRCS:.c=.o}
 

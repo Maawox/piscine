@@ -1,36 +1,27 @@
-int ft_str_is_space(char *str)
-{
-	int i;
-	int nb;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/21 18:33:37 by mderoir           #+#    #+#             */
+/*   Updated: 2019/08/22 18:11:40 by mderoir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-	nb = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == ' ')
-			nb++;
-		i++;
-	}
-	return (nb);
-}
-
-int ft_count_if(char **tab, int(*f)(char*))
+int		ft_count_if(char **tab, int length, int (*f)(char*))
 {
 	int y;
 	int nb;
 
 	nb = 0;
 	y = 0;
-	while (tab[y])
+	while (y < length)
 	{
-		nb = ((*f)(tab[y]));
-	
+		if ((*f)(tab[y]) != 0)
+			nb++;
 		y++;
-	}	
+	}
 	return (nb);
-}
-
-int main (int argc, char **argv)
-{
-	printf("%d\n", ft_count_if(argv, ft_str_is_space));
 }

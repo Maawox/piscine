@@ -6,16 +6,26 @@
 /*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/13 17:51:30 by mderoir           #+#    #+#             */
-/*   Updated: 2019/08/17 19:39:41 by mderoir          ###   ########.fr       */
+/*   Updated: 2019/08/18 16:46:45 by mderoir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_stock_str.h"
 #include <stdlib.h>
 
-char					*ft_strcpy(char *dest, char *src)
+int					ft_strlen(char *str)
 {
-	int i;
+	int	length;
+
+	length = 0;
+	while (str[length] != 0)
+		length++;
+	return (length);
+}
+
+void				ft_strcpy(char *dest, char *src)
+{
+	unsigned int i;
 
 	i = 0;
 	while (src[i])
@@ -23,56 +33,34 @@ char					*ft_strcpy(char *dest, char *src)
 		dest[i] = src[i];
 		i++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	dest[i] = 0;
 }
 
-int						ft_strlen(char *str)
+struct s_stock_str	*ft_strs_to_tab(int ac, char **av)
 {
-	int i;
+	int					i;
+	t_stock_str			*tab;
 
 	i = 0;
-	while (str[i])
+	if (!(tab = malloc(sizeof(t_stock_str) * (ac + 1))))
+		return (NULL);
+	while ((i) < ac)
+	{
+		tab[i].size = ft_strlen(av[i]);
+		if (!(tab[i].str = (char *)malloc(sizeof(char) * (tab[i].size + 1))))
+			return (NULL);
+		tab[i].str = av[i];
+		if (!(tab[i].copy = (char *)malloc(sizeof(char) * (tab[i].size + 1))))
+			return (NULL);
+		ft_strcpy(tab[i].copy, tab[i].str);
 		i++;
-	return (i);
-}
-
-struct s_stock_str		ft_str_to_stk(struct s_stock_str stk, char *str)
-{
-	stk.size = ft_strlen(str);
-	if (stk.size == 0)
-		return (stk);
-	if (!(stk.str = (char*)malloc(sizeof(char) * (stk.size + 1))))
-		return (stk);
-	stk.str = ft_strcpy(stk.str, str);
-	if (!(stk.copy = (char*)malloc(sizeof(char) * (stk.size + 1))))
-		return (stk);
-	stk.copy = ft_strcpy(stk.copy, str);
-	return (stk);
-}
-
-struct s_stock_str		*ft_strs_to_tab(int ac, char **av)
-{
-	t_stock_str	*tab;
-	int			x;
-	int			y;
-
-	x = 0;
-	y = 0;
-	if (!(tab = (struct s_stock_str*)malloc(sizeof(struct s_stock_str) * (ac + 1))))
-	{
-		tab = (struct s_stock_str*)malloc(sizeof(struct s_stock_str));
-		tab[x].str = NULL;
-		tab[x].size = 0;
-		tab[x].copy = NULL;
-		return (tab);
 	}
-	while (av[y])
-	{
-		tab[x] = ft_str_to_stk(tab[x], av[y]);
-		x++;
-		y++;
-	}
-	tab[x].str = NULL;
+	tab[i].size = 0;
+	if (!(tab[i].str = (char *)malloc(sizeof(char))))
+		return (NULL);
+	tab[i].str = NULL;
+	if (!(tab[i].copy = (char *)malloc(sizeof(char))))
+		return (NULL);
+	tab[i].copy = NULL;
 	return (tab);
 }

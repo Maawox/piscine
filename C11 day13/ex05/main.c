@@ -1,57 +1,32 @@
-#include <stdio.h>
-#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mderoir <mderoir@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/18 14:43:55 by mderoir           #+#    #+#             */
+/*   Updated: 2019/08/22 19:25:58 by mderoir          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int ft_add(int a, int b)
-{
-	return(a + b);
-}
+#include "do_op.h"
 
-int ft_sub(int a, int b)
-{
-	return(a - b);
-}
-
-int ft_div(int a, int b)
-{
-	return(a / b);
-}
-
-int ft_mod(int a, int b)
-{
-	return(a % b);
-}
-
-int ft_mul(int a, int b)
-{
-	return(a * b);
-}
-
-int main (int argc, char **argv)
+int		main(int argc, char **argv)
 {
 	int (*op)(int, int);
-
-	
-
-
+	int a;
+	int b;
 
 	if (argc != 4)
 		return (0);
-	a = atoi(argv[1]);
-	b = atoi(argv[3]);
-
-	if (argv[2][0] == '+')
-		op = &ft_add;
-
-	if (argv[2][0] == '-')
-		op = &ft_sub;
-
-	if (argv[2][0] == '/')
-		op = &ft_div;
-
-	if (argv[2][0] == '%')
-		op = &ft_mod;
-
-	if (argv[2][0] == '*')
-		op = &ft_mul;
-
+	a = ft_atoi(argv[1]);
+	b = ft_atoi(argv[3]);
+	if ((argv[2][0] == '%' || argv[2][0] == '/') && b == 0)
+	{
+		is_error(argv[2][0]);
+		return (0);
+	}
+	do_op(argv[2][0], op, a, b);
+	ft_putchar('\n');
 }
